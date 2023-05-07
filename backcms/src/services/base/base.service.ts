@@ -13,27 +13,16 @@ export class BaseService {
     private inVec = crypto.randomBytes(16);
     private secKey = crypto.randomBytes(32);
 
-    public async ReadFile():Promise<any>{
-        try {
-            const data = fs.readFileSync(this.ruta + 'testJsonFile.json', 'utf8');
-            const jsonData = JSON.parse(data);            
-            return jsonData;
-        } catch (error) { 
-            console.log(`ERROR: ${error}`);
-            return null;
-        }
-        return null; 
+    public async ReadFile(fileName:string):Promise<any>{
+        const data = fs.readFileSync(this.ruta + fileName + '.json', 'utf8');
+        const jsonData = JSON.parse(data);            
+        return jsonData; 
     }
 
     public async WriteFile(fileName:string, data:any):Promise<boolean>{
-        try {
-            const frameworksData = JSON.stringify(data);
-            fs.writeFileSync(this.ruta + fileName + '.json', frameworksData, 'utf-8');
-            return true;
-        } catch (error) { 
-            console.log(`WRITE ERROR: ${error}`);
-            return false;
-        }
+        const frameworksData = JSON.stringify(data);
+        fs.writeFileSync(this.ruta + fileName + '.json', frameworksData, 'utf-8');
+        return true;        
     }
 
     public async salacayula(palabra:string):Promise<any>{
