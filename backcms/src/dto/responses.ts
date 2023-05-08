@@ -3,3 +3,10 @@ export default class sessionRespose{
     dateInit:string;
     dateEnd:string;
 }
+
+export class galleryResponse{
+    path:string;
+    name:string;
+    description:string;
+    inscription:Date;
+}

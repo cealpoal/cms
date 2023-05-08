@@ -8,14 +8,14 @@ const crypto = require("crypto");
 
 @Injectable()
 export class BaseService {
-    private ruta:string = './src/';
+    private ruta:string = './src/asset/';
     private thing = 'aes-256-cbc';
     private inVec = crypto.randomBytes(16);
     private secKey = crypto.randomBytes(32);
 
     public async ReadFile(fileName:string):Promise<any>{
         const data = fs.readFileSync(this.ruta + fileName + '.json', 'utf8');
-        const jsonData = JSON.parse(data);            
+        const jsonData = JSON.parse(data);
         return jsonData; 
     }
 
