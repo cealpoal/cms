@@ -5,6 +5,8 @@ import { MerlinController } from './merlin/merlin.controller';
 import { MerlinService } from './services/merlin/merlin.service';
 import { BaseService } from './services/base/base.service';
 import { GalleryService } from './services/gallery/gallery.service';
+import { GalleryController } from './controller/gallery/gallery.controller';
+import { MerlinController } from './controller/merlin/merlin.controller';
 
 @Module({
   imports: [],
