@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { createCipheriv, randomBytes, scrypt } from 'crypto';
+import { sessionRequest } from 'src/dto/requests';
 import { promisify } from 'util';
 
 const fs = require('fs');
@@ -79,5 +80,10 @@ export class BaseService {
         let decryptedData = decipherText.update(palabra, 'hex', 'utf-8');
         decryptedData += decipherText.final('utf-8');
         return decryptedData;
+    }
+
+    public VerifySession(user:sessionRequest):boolean{
+        //Porhacer: validar la sesiòn
+        return true;
     }
 }

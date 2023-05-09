@@ -6,7 +6,7 @@ export default class sessionRespose{
 
 export class galleryResponse{
     path:string;
-    name:string;
+    id:string;
     description:string;
     inscription:Date;
 }

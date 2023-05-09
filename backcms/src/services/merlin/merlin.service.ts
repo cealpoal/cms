@@ -25,22 +25,5 @@ export class MerlinService {
         return sessionNow;
     }
 
-    public async GetGallery(user:sessionRequest):Promise<galleryResponse[]>{
-        if(!this.VerifySession(user)){ return null; }
-        const gallery = this.base.ReadFile('picasso').then(data => {
-            return data;
-        });
-        return gallery;
-    }
-
-    public async SetGallery(user:sessionRequest,data:galleryRequest[]):Promise<boolean>{
-        if(!this.VerifySession(user)){ return null; }
-        return this.base.WriteFile('picasso',data).then(data => { return data;} );
-    }
-
-    private VerifySession(user:sessionRequest):boolean{
-        //Porhacer: validar la sesiòn
-        return true;
-    }
 }
 
