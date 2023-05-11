@@ -16,12 +16,16 @@ export class BaseService {
 
     public async ReadFile(fileName:string):Promise<any>{
         const data = fs.readFileSync(this.ruta + fileName + '.json', 'utf8');
-        const jsonData = JSON.parse(data);
-        return jsonData; 
+        if(data){
+            const jsonData = JSON.parse(data);
+            return jsonData; 
+        }
+        return null;
     }
 
     public async WriteFile(fileName:string, data:any):Promise<boolean>{
         const frameworksData = JSON.stringify(data);
+        console.log(frameworksData);
         fs.writeFileSync(this.ruta + fileName + '.json', frameworksData, 'utf-8');
         return true;        
     }
