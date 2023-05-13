@@ -9,34 +9,44 @@ import { GalleryService } from 'src/app/services/gallery.service';
   styleUrls: ['./gallery-preview.component.css']
 })
 export class GalleryPreviewComponent implements OnInit {
-
-  id: string;
-  photo: galleryResponse;
+  id: string = '';
+  photo: galleryResponse = {
+    id: '',
+    description: '',
+    inscription: new Date(),
+    path: ''
+  };
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private galleryService: GalleryService,
     private router: Router
-  ) {
-      this.id = '';
-      this.photo = {
-        path: '',
-        id: '',
-        description: '',
-        inscription: new Date 
-      };
-   }
+  ) { }
 
   ngOnInit() {
-    
+    this.activatedRoute.params.subscribe(params => {
+      this.id = params['id'];
+      this.galleryService.getPhoto(this.id)
+        .then(res => {
+            this.photo = res;
+          }
+        )
+    });
   }
 
   deletePhoto(id: string) {
-    
+    this.galleryService.deletePhoto(id)
+      .then(res => {
+        this.router.navigate(['/photos']);
+      })
   }
 
   updatePhoto(inscription: HTMLInputElement, description: HTMLTextAreaElement): boolean {
-    
+    // this.galleryService.updatePhoto(this.photo._id, title.value, description.value)
+    //   .subscribe(res => {
+    //     console.log(res);
+    //     this.router.navigate(['/photos']);
+    //   });
     return false;
   }
 

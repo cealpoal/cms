@@ -13,20 +13,17 @@ export class GalleryListComponent implements OnInit {
 
   constructor(
     private galleryService: GalleryService,
-    private router: Router 
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.galleryService.getPhotos()
-      .subscribe(
-        res => {
-          this.photos = res;
-        },
-        err => console.log(err)
-      )
+    this.galleryService.getPhotos().then(data => {
+        this.photos = data;
+      }
+    );
   }
 
   selectedCard(id: string) {
-    this.router.navigate(['/gallery', id]);
+    this.router.navigate(['/photos', id]);
   }
 }

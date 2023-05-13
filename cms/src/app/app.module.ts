@@ -7,6 +7,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { GalleryListComponent } from './components/gallery-list/gallery-list.component';
 import { GalleryFormComponent } from './components/gallery-form/gallery-form.component';
 import { GalleryPreviewComponent } from './components/gallery-preview/gallery-preview.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { GalleryPreviewComponent } from './components/gallery-preview/gallery-pr
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
