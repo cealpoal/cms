@@ -54,6 +54,10 @@ export class GalleryListComponent implements OnInit {
     alert('Pendiente modificación');
   }
 
+  deletePhoto(index:string):void{
+    alert('Pendiente modificación');
+  }
+
   moveLeft(index:number):void{
     if(index <= 0){
       this.currentIndex = this.photos.length - 1;
