@@ -12,6 +12,7 @@ export class GalleryListComponent implements OnInit {
   @Input() showCount = false;
 
   photos: galleryResponse[] = [];
+  checkedList: number[] = [];
 
   previewPhoto = false;
   showMask = false;
@@ -69,5 +70,14 @@ export class GalleryListComponent implements OnInit {
       this.currentIndex += 1;
     }
     this.currentPhoto = this.photos[this.currentIndex];
+  }
+
+  clickSelect(index:number){
+    let ind = this.checkedList.findIndex(x => x == index);
+    if(ind < 0){
+      this.checkedList.push(index);
+    }else{
+      this.checkedList.splice(ind,1);
+    }
   }
 }

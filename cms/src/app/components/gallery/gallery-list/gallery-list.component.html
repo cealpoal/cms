@@ -2,7 +2,10 @@
     <section class="gallery-container">
         <div class="gcontainer">
             <div *ngFor="let photo of photos; let i=index" class="gallery-img" >
-                <img [src]="photo.path" (click)="onPreviewPhoto(i)" data-toggle="modal" data-target="#exampleModalCenter">
+                <div>
+                    <input type="checkbox" class="btnSelection" (click)="clickSelect(i)" />
+                    <img [src]="photo.path" (click)="onPreviewPhoto(i)" >
+                </div>
             </div>
         </div>
     </section>
