@@ -1,7 +1,143 @@
-.card-photo {
-    cursor: pointer;
+:host{
+    width: 100vw;
+    height: 100vw;
 }
 
-.card-photo:hover {
-    border: 1px solid #333;
+.divsection{
+    display: block;
+    text-align: center;
+}
+
+.gallery-container{
+    position: relative;
+    display: inline-block;
+    padding: 25px;
+}
+
+.gcontainer{
+    line-height: 0;
+    column-count: 3;
+    column-gap: 30px;
+}
+
+.gallery-img img{
+    width: 100%;
+    height: auto;
+    cursor: zoom-in;
+    border-radius: .35rem;
+    margin-bottom: 30px;
+    box-shadow: 0 1px 5px 0 rgba(0,0,0,.21);
+}
+
+.lightbox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.85);
+    overflow: hidden;
+}
+
+.lightbox-img img{
+    max-width: 75%;
+    max-height: 75%;
+}
+
+.lightboxButton{
+    cursor: pointer;
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: larger;
+    opacity: 0.5;
+}
+
+.lightboxButton:hover{
+    opacity: 1;
+}
+
+.btnNavegador{
+    font-size: 3em;
+    position: fixed;
+    top: calc(50% - 0.5em);
+    opacity: 0.15;
+}
+
+.lightbox-header{
+    color: whitesmoke;
+    position: fixed;
+    top: 0;
+    width: 80%;
+    padding-top: 10px;
+}
+
+.lightbox-header-left{
+    width: 33%;
+    text-align: left;
+    float: left;
+    display: inline-block
+}
+
+.lightbox-header-center{
+    width: 33%;
+    text-align: center;
+    display: inline-block
+}
+
+.lightbox-header-right{
+    width: 33%;
+    text-align: right;
+    float: right;
+    display: inline-block
+}
+
+.lightbox-center{
+    color: whitesmoke;
+    position: fixed;
+    width: 80%;
+}
+
+.lightbox-center-left{
+    width: 100px;
+    text-align: left;
+    float: left;
+    display: inline-block
+}
+
+.lightbox-center-center{
+    width: 100%;
+    text-align: center;
+    display: inline-block
+}
+
+.lightbox-center-right{
+    width: 100px;
+    text-align: right;
+    float: right;
+    display: inline-block
+}
+
+.lightbox-footer{
+    color: whitesmoke;
+    position: fixed;
+    bottom: 0;
+    width: 80%;
+    padding-bottom: 15px;
+}
+
+.btnEdit > a{
+    opacity: 0;
+    font-size: auto;
+    cursor: pointer;    
+}
+
+.btnEdit:hover > a{
+    opacity: 0.15;
+}
+
+.btnEdit > a:hover{
+    opacity: 0.85;
 }

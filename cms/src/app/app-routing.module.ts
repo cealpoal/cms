@@ -1,22 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { GalleryListComponent } from './components/gallery/gallery-list/gallery-list.component';
-import { GalleryFormComponent } from './components/gallery/gallery-form/gallery-form.component';
-import { GalleryPreviewComponent } from './components/gallery/gallery-preview/gallery-preview.component';
 
 const routes: Routes = [
   {
     path: 'photos',
     component: GalleryListComponent
-  },
-  {
-    path: 'photos/new',
-    component: GalleryFormComponent
-  },
-  {
-    path: 'photos/:id',
-    component: GalleryPreviewComponent
-  },
+  },  
   // {
   //   path: '',
   //   redirectTo: '/photos',
