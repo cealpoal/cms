@@ -3,7 +3,7 @@
         <div class="gcontainer">
             <div *ngFor="let photo of photos; let i=index" class="gallery-img" >
                 <div>
-                    <input type="checkbox" class="btnSelection" (click)="clickSelect(i)" />
+                    <input type="checkbox" class="btnSelection" (click)="clickSelect(photo.id)" />
                     <img [src]="photo.path" (click)="onPreviewPhoto(i)" >
                 </div>
             </div>
@@ -44,9 +44,10 @@
             </div>        
         </div>
         <div class="lightbox-footer">
-            <span class="btnEdit">{{currentPhoto.description}}&nbsp;&nbsp;             
+            <span *ngIf="!editing" class="btnEdit">{{currentPhoto.description}}&nbsp;&nbsp;             
                 <a (click)="edit(currentIndex)" title="Editar descripción"><i class="fa fa-edit" aria-hidden="true"></i></a>
-            </span>                
+            </span>    
+            <input *ngIf="editing" type="text" id="descripcion" name="descripcion" #descripcion />            
         </div>
     </div>
 </div>

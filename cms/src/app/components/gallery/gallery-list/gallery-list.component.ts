@@ -12,10 +12,11 @@ export class GalleryListComponent implements OnInit {
   @Input() showCount = false;
 
   photos: galleryResponse[] = [];
-  checkedList: number[] = [];
+  checkedList: string[] = [];
 
   previewPhoto = false;
   showMask = false;
+  editing = false;
   currentPhoto:galleryResponse = {
     path:'',
     id:'',
@@ -54,8 +55,24 @@ export class GalleryListComponent implements OnInit {
     alert('Pendiente modificación');
   }
 
-  deletePhoto(index:string):void{
-    alert('Pendiente modificación');
+  deletePhoto(id:string):void{
+    this.galleryService.deletePhoto(id).then(data => {
+      if(data){        
+        this.ngOnInit();
+        this.closePhoto();
+      }
+    });
+  }
+
+  deletePhotos():void{
+    if(this.checkedList.length > 0){
+      this.galleryService.deletePhotos(this.checkedList).then(data => {
+        if(data){
+          this.ngOnInit();
+          this.closePhoto();
+        }
+      });
+    }
   }
 
   moveLeft(index:number):void{
@@ -76,10 +93,10 @@ export class GalleryListComponent implements OnInit {
     this.currentPhoto = this.photos[this.currentIndex];
   }
 
-  clickSelect(index:number){
-    let ind = this.checkedList.findIndex(x => x == index);
+  clickSelect(id:string){
+    let ind = this.checkedList.findIndex(x => x == id);
     if(ind < 0){
-      this.checkedList.push(index);
+      this.checkedList.push(id);
     }else{
       this.checkedList.splice(ind,1);
     }

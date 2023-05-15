@@ -66,4 +66,8 @@ export class GalleryService {
   async deletePhoto(id:string):Promise<boolean>{
     return true;
   }
+
+  async deletePhotos(ids:string[]):Promise<boolean>{
+    return true;
+  }
 }
