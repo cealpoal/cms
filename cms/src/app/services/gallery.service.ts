@@ -53,7 +53,7 @@ export class GalleryService {
     return list;
   }
 
-  async getPhoto(id:string):Promise<galleryResponse>{
+  async getPhoto(id: string):Promise<galleryResponse>{
     const photo:galleryResponse = {
       path: "https://ruotedasogno-live.fra1.cdn.digitaloceanspaces.com/catalog/product/cache/6/small_image/1920x/e9c3970ab036de70892d86c6d221abfe/h/o/hon00264-1.jpg",
       id: "1",
@@ -61,6 +61,10 @@ export class GalleryService {
       inscription: new Date()
     };
     return photo;
+  }
+
+  async editPhoto(id:string, description: string):Promise<boolean>{
+    return true;
   }
 
   async deletePhoto(id:string):Promise<boolean>{

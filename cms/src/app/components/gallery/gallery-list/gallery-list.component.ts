@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { galleryResponse } from 'src/app/dtos/responses';
 import { GalleryService } from 'src/app/services/gallery.service';
 
@@ -10,13 +11,14 @@ import { GalleryService } from 'src/app/services/gallery.service';
 export class GalleryListComponent implements OnInit {
   @Input() galleryData: galleryResponse[] = [];
   @Input() showCount = false;
-
+  formEdit: FormGroup;
   photos: galleryResponse[] = [];
   checkedList: string[] = [];
-
+  
   previewPhoto = false;
   showMask = false;
   editing = false;
+  new = false;
   currentPhoto:galleryResponse = {
     path:'',
     id:'',
@@ -27,7 +29,38 @@ export class GalleryListComponent implements OnInit {
   controls = true;
   totalImageCount = 0;
 
-  constructor(private galleryService:GalleryService){ }
+  //EDIT FORM
+  get descripcion() { return this.formEdit.get('description'); }
+  
+  crearForm(){
+    return new FormGroup(
+      {
+        descripcion: new FormControl(this.currentPhoto.description, [Validators.required, Validators.minLength(1), Validators.maxLength(50)])
+      }
+    );
+  }
+  resetForm(): void{ this.formEdit.reset(); }
+  saveForm(index:number, id:string): void{
+    if(this.formEdit.valid){
+      let form: any = this.formEdit.getRawValue();
+      this.galleryService.editPhoto(id,form.descripcion).then(data => {
+        this.photos[index].description = form.descripcion;
+        this.onPreviewPhoto(index);
+        return data;
+      });
+      this.closeForm();
+    }
+  }
+  closeForm(): void{
+    this.editing = false;
+    this.controls = true;
+  }
+  //END FORM
+
+
+  constructor(private galleryService:GalleryService){
+    this.formEdit = this.crearForm();
+  }
 
   ngOnInit(): void {
     this.galleryService.getPhotos().then(data => this.photos = data);
@@ -37,6 +70,7 @@ export class GalleryListComponent implements OnInit {
     this.showMask = true;
     this.previewPhoto = true;
     this.showCount = true;
+    this.editing = false;
     this.currentIndex = index;
     this.currentPhoto = this.photos[index];
     this.totalImageCount = this.photos.length;
@@ -48,11 +82,13 @@ export class GalleryListComponent implements OnInit {
     this.previewPhoto = false;
     this.showCount = false;
     this.controls = false;
+    this.editing = false;
     this.currentIndex = 0;
   }
 
   edit(index:number):void{
-    alert('Pendiente modificación');
+    this.editing = true;
+    this.controls = false;
   }
 
   deletePhoto(id:string):void{

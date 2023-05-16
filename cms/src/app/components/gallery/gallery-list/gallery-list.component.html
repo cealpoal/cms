@@ -13,7 +13,7 @@
         <div class="lightbox-header">
             <div class="lightbox-header-left">                
                 <span class="btnEdit">
-                    <a class="lightboxButton" (click)="deletePhoto(currentPhoto.id)" title="Eliminar de la galería">
+                    <a *ngIf="controls" class="lightboxButton" (click)="deletePhoto(currentPhoto.id)" title="Eliminar de la galería">
                             <i class="fas fa-trash" aria-hidden="true"></i>
                     </a>&nbsp;&nbsp;                        
                     {{currentPhoto.inscription | date: 'dd/MM/yyyy'}}                    
@@ -46,8 +46,28 @@
         <div class="lightbox-footer">
             <span *ngIf="!editing" class="btnEdit">{{currentPhoto.description}}&nbsp;&nbsp;             
                 <a (click)="edit(currentIndex)" title="Editar descripción"><i class="fa fa-edit" aria-hidden="true"></i></a>
-            </span>    
-            <input *ngIf="editing" type="text" id="descripcion" name="descripcion" #descripcion />            
+            </span>   
+            <div *ngIf="editing" class="divEditing">
+                <form [formGroup]="formEdit" (ngSubmit)="saveForm(currentIndex, currentPhoto.id)" style="width: 80%;">
+                    <table>
+                        <tr>
+                            <td>
+                                <textarea class="formBlack" aria-label="formEdit" formControlName="descripcion" placeholder="Descripcion" type="text" autofocus>CESAR</textarea>                            
+                            </td>
+                            <td style="float: right; width: 0px;">
+                                <table>
+                                    <tr><td><a (click)="saveForm(currentIndex, currentPhoto.id)" class="lightboxButton"><i class="fa fa-save" title="Guardar"></i></a></td></tr>
+                                    <tr><td><a (click)="closeForm()" class="lightboxButton" style="cursor: pointer;" title="Cancelar"><i class="fa fa-ban"></i></a></td></tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>                    
+                </form>
+            </div>            
         </div>
     </div>
+</div>
+
+<div *ngIf="new" class="modalNew">
+    <div class="lightbox"></div>
 </div>

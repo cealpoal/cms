@@ -149,3 +149,17 @@
 .btnEdit > a:hover{
     opacity: 0.85;
 }
+
+.divEditing, .divEditing > form, .divEditing > form > table{
+    margin: 0 auto;
+    width: 100%;
+}
+
+.formBlack{
+    margin: 0 auto;
+    width: 100%;
+    color: whitesmoke;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+}

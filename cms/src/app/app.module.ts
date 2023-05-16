@@ -7,6 +7,8 @@ import { GalleryListComponent } from './components/gallery/gallery-list/gallery-
 import { HttpClientModule } from '@angular/common/http';
 import { NaviComponent } from './components/main/navi/navi.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +18,8 @@ import { NaviComponent } from './components/main/navi/navi.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
