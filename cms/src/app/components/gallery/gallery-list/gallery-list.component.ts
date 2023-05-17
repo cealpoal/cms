@@ -12,6 +12,7 @@ export class GalleryListComponent implements OnInit {
   @Input() galleryData: galleryResponse[] = [];
   @Input() showCount = false;
   formEdit: FormGroup;
+  formNew: FormGroup;
   photos: galleryResponse[] = [];
   checkedList: string[] = [];
   
@@ -29,18 +30,39 @@ export class GalleryListComponent implements OnInit {
   controls = true;
   totalImageCount = 0;
 
+  //NEW FORM
+  get descripcionNew() { return this.formNew.get('description'); }
+  get pathNew() { return this.formNew.get('path'); }
+  
+  crearFormNew(){
+    return new FormGroup(
+      {
+        descripcionNew: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(50)]),
+        pathNew: new FormControl('')
+      }
+    );
+  }
+  resetFormNew(): void{ this.formNew.reset(); }
+  saveFormNew():void {
+
+  }
+  closeFormNew():void{
+
+  }
+  //END FORM
+
   //EDIT FORM
   get descripcion() { return this.formEdit.get('description'); }
   
-  crearForm(){
+  crearFormEdit(){
     return new FormGroup(
       {
         descripcion: new FormControl(this.currentPhoto.description, [Validators.required, Validators.minLength(1), Validators.maxLength(50)])
       }
     );
   }
-  resetForm(): void{ this.formEdit.reset(); }
-  saveForm(index:number, id:string): void{
+  resetFormEdit(): void{ this.formEdit.reset(); }
+  saveFormEdit(index:number, id:string): void{
     if(this.formEdit.valid){
       let form: any = this.formEdit.getRawValue();
       this.galleryService.editPhoto(id,form.descripcion).then(data => {
@@ -48,10 +70,10 @@ export class GalleryListComponent implements OnInit {
         this.onPreviewPhoto(index);
         return data;
       });
-      this.closeForm();
+      this.closeFormEdit();
     }
   }
-  closeForm(): void{
+  closeFormEdit(): void{
     this.editing = false;
     this.controls = true;
   }
@@ -59,7 +81,8 @@ export class GalleryListComponent implements OnInit {
 
 
   constructor(private galleryService:GalleryService){
-    this.formEdit = this.crearForm();
+    this.formEdit = this.crearFormEdit();
+    this.formNew = this.crearFormNew();
   }
 
   ngOnInit(): void {

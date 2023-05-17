@@ -11,6 +11,10 @@ export class GalleryService {
 
   constructor(private http: HttpClient) { }
 
+async newPhoto(path:string, description:string):Promise<boolean>{
+  return true;
+}
+
   async getPhotos():Promise<galleryResponse[]> {
     const list:galleryResponse[] = [
       {

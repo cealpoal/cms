@@ -48,16 +48,16 @@
                 <a (click)="edit(currentIndex)" title="Editar descripción"><i class="fa fa-edit" aria-hidden="true"></i></a>
             </span>   
             <div *ngIf="editing" class="divEditing">
-                <form [formGroup]="formEdit" (ngSubmit)="saveForm(currentIndex, currentPhoto.id)" style="width: 80%;">
+                <form [formGroup]="formEdit" (ngSubmit)="saveFormEdit(currentIndex, currentPhoto.id)" style="width: 80%;">
                     <table>
                         <tr>
                             <td>
-                                <textarea class="formBlack" aria-label="formEdit" formControlName="descripcion" placeholder="Descripcion" type="text" autofocus>CESAR</textarea>                            
+                                <textarea class="formBlack" aria-label="formEdit" formControlName="descripcion" placeholder="Descripcion" type="text" autofocus></textarea>                            
                             </td>
                             <td style="float: right; width: 0px;">
                                 <table>
-                                    <tr><td><a (click)="saveForm(currentIndex, currentPhoto.id)" class="lightboxButton"><i class="fa fa-save" title="Guardar"></i></a></td></tr>
-                                    <tr><td><a (click)="closeForm()" class="lightboxButton" style="cursor: pointer;" title="Cancelar"><i class="fa fa-ban"></i></a></td></tr>
+                                    <tr><td><a (click)="saveFormEdit(currentIndex, currentPhoto.id)" class="lightboxButton"><i class="fa fa-save" title="Guardar"></i></a></td></tr>
+                                    <tr><td><a (click)="closeFormEdit()" class="lightboxButton" style="cursor: pointer;" title="Cancelar"><i class="fa fa-ban"></i></a></td></tr>
                                 </table>
                             </td>
                         </tr>
