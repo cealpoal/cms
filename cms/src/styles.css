@@ -4,7 +4,7 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     font-family: 'Poppins', sans-serif;
 }
 
@@ -57,7 +57,7 @@ body.dark{
     z-index: 100;  
 }
 .sidebar.close{
-    width: 88px;
+    width: 60px;
 }
 
 /* ===== Reusable code - Here ===== */
@@ -307,4 +307,9 @@ body.dark .switch::before{
 }
 body.dark .home .text{
     color: var(--text-color);
+}
+
+.seccionDerecha{
+    width: calc(100% - 85px);
+    float: right;
 }

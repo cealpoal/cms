@@ -1,2 +1,58 @@
-<p>navi works!</p>
-<a routerLink="/photos">Galería</a>
+<nav [ngClass]="show ? 'sidebar': 'sidebar close'">
+    <header>
+      <div class="image-text">
+        <span class="image">
+          <img src="../assets/images/logo.png" alt="" />
+        </span>
+
+        <div *ngIf="show" class="text logo-text">
+          <span class="name">IDESOFT</span>
+          <span class="profession">SYSTEMS</span>
+        </div>
+      </div>
+
+      <a (click)="showHide()">
+        <i class="bx bx-chevron-left toggle"></i>
+      </a>
+    </header>
+
+    <div class="menu-bar">
+      <div class="menu">
+        <li class="search-box" title="Buscar">
+          <i class="bx bx-search icon"></i>
+          <input type="text" placeholder="Buscar..." />
+        </li>
+
+        <ul class="menu-links" *ngFor="let item of menu">
+          <li class="nav-link">
+            <a href="{{item.path}}" title="{{item.tool}}">
+              <i class="bx {{item.icon}} icon"></i>
+              <span class="text nav-text">{{item.text}}</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="bottom-content">
+        <li class="">
+          <a href="#" title="Cerrar Sesión">
+            <i class="bx bx-log-out icon"></i>
+            <span class="text nav-text">Cerrar Sesión</span>
+          </a>
+        </li>
+
+        <li class="mode">
+          <div class="sun-moon">
+            <i class="bx bx-moon icon moon"></i>
+            <i class="bx bx-sun icon sun"></i>
+          </div>
+          <span class="mode-text text">Dark mode</span>
+
+          <div class="toggle-switch" (click)="changeMode()">
+            <span class="switch" ></span>
+          </div>
+        </li>
+      </div>
+    </div>
+  </nav>

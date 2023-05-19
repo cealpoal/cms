@@ -9,6 +9,7 @@
     height: 25px;
     cursor: pointer;
     position: absolute;
+    border-radius: 50%;
 }
 
 .divsection{

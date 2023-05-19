@@ -1,73 +1,83 @@
-<div class="divsection">
-    <section class="gallery-container">
-        <div class="gcontainer">
-            <div *ngFor="let photo of photos; let i=index" class="gallery-img" >
-                <div>
-                    <input type="checkbox" class="btnSelection" (click)="clickSelect(photo.id)" />
-                    <img [src]="photo.path" (click)="onPreviewPhoto(i)" >
+<div class="seccionDerecha">
+    <div class="divsection">
+        <section class="gallery-container">
+            <div class="gcontainer">
+                <div *ngFor="let photo of photos; let i=index" class="gallery-img" >
+                    <div>
+                        <input type="checkbox" class="btnSelection" (click)="clickSelect(photo.id)" />
+                        <img [src]="photo.path" (click)="onPreviewPhoto(i)" >
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <div *ngIf="showMask" class="lightbox">
-        <div class="lightbox-header">
-            <div class="lightbox-header-left">                
-                <span class="btnEdit">
-                    <a *ngIf="controls" class="lightboxButton" (click)="deletePhoto(currentPhoto.id)" title="Eliminar de la galería">
-                            <i class="fas fa-trash" aria-hidden="true"></i>
-                    </a>&nbsp;&nbsp;                        
-                    {{currentPhoto.inscription | date: 'dd/MM/yyyy'}}                    
-                </span>
-            </div>
-            <div class="lightbox-header-center">                
-                <span *ngIf="showCount" class="count">{{currentIndex + 1}} / {{totalImageCount}}</span>
-            </div>
-            <div class="lightbox-header-right">      
-                <a class="lightboxButton" (click)="closePhoto()" title="Cerrar"><i class="fa fa-times" aria-hidden="true"></i></a>                        
-            </div>
-        </div>
-        <div class="lightbox-center">
-            <div class="lightbox-center-left">                
-                <a *ngIf="controls" class="lightboxButton btnNavegador" (click)="moveLeft(currentIndex)" title="Anterior">
-                    <i class="fas fa-arrow-circle-left icon-lightbox-carousel icon-prev"></i>
-                </a>
-            </div>        
-            <div class="lightbox-center-center">                
-                <div *ngIf="previewPhoto" class="lightbox-img">
-                    <img [src]="currentPhoto.path">
+        </section>
+        <div *ngIf="showMask" class="lightbox">
+            <div class="lightbox-header">
+                <div class="lightbox-header-left">                
+                    <span class="btnEdit">
+                        <a *ngIf="controls" class="lightboxButton" (click)="deletePhoto(currentPhoto.id)" title="Eliminar de la galería">
+                                <i class='bx bx-trash' aria-hidden="true"></i>
+                        </a>&nbsp;&nbsp;                        
+                        {{currentPhoto.inscription | date: 'dd/MM/yyyy'}}                    
+                    </span>
                 </div>
-            </div>        
-            <div class="lightbox-center-right">                
-                <a *ngIf="controls" class="lightboxButton btnNavegador" (click)="moveRight(currentIndex)" title="Siguiente">
-                    <i class="fas fa-arrow-circle-right icon-lightbox-carousel icon-next"></i>                
-                </a>
-            </div>        
-        </div>
-        <div class="lightbox-footer">
-            <span *ngIf="!editing" class="btnEdit">{{currentPhoto.description}}&nbsp;&nbsp;             
-                <a (click)="edit(currentIndex)" title="Editar descripción"><i class="fa fa-edit" aria-hidden="true"></i></a>
-            </span>   
-            <div *ngIf="editing" class="divEditing">
-                <form [formGroup]="formEdit" (ngSubmit)="saveFormEdit(currentIndex, currentPhoto.id)" style="width: 80%;">
-                    <table>
-                        <tr>
-                            <td>
-                                <textarea class="formBlack" aria-label="formEdit" formControlName="descripcion" placeholder="Descripcion" type="text" autofocus></textarea>                            
-                            </td>
-                            <td style="float: right; width: 0px;">
-                                <table>
-                                    <tr><td><a (click)="saveFormEdit(currentIndex, currentPhoto.id)" class="lightboxButton"><i class="fa fa-save" title="Guardar"></i></a></td></tr>
-                                    <tr><td><a (click)="closeFormEdit()" class="lightboxButton" style="cursor: pointer;" title="Cancelar"><i class="fa fa-ban"></i></a></td></tr>
-                                </table>
-                            </td>
-                        </tr>
-                    </table>                    
-                </form>
-            </div>            
+                <div class="lightbox-header-center">                
+                    <span *ngIf="showCount" class="count">{{currentIndex + 1}} / {{totalImageCount}}</span>
+                </div>
+                <div class="lightbox-header-right">      
+                    <a class="lightboxButton" style="font-size: 1.6rem;" (click)="closePhoto()" title="Cerrar">
+                        <i class='bx bx-x-circle' aria-hidden="true"></i>
+                    </a>                        
+                </div>
+            </div>
+            <div class="lightbox-center">
+                <div class="lightbox-center-left">                
+                    <a *ngIf="controls" class="lightboxButton btnNavegador" (click)="moveLeft(currentIndex)" title="Anterior">
+                        <i class='bx bx-chevron-left icon-prev'></i>
+                    </a>
+                </div>        
+                <div class="lightbox-center-center">                
+                    <div *ngIf="previewPhoto" class="lightbox-img">
+                        <img [src]="currentPhoto.path">
+                    </div>
+                </div>        
+                <div class="lightbox-center-right">                
+                    <a *ngIf="controls" class="lightboxButton btnNavegador" (click)="moveRight(currentIndex)" title="Siguiente">
+                        <i class='bx bx-chevron-right icon-next'></i>              
+                    </a>
+                </div>        
+            </div>
+            <div class="lightbox-footer">
+                <span *ngIf="!editing" class="btnEdit">{{currentPhoto.description}}&nbsp;&nbsp;             
+                    <a (click)="edit(currentIndex)" title="Editar descripción">
+                        <i class='bx bx-edit-alt' aria-hidden="true"></i>
+                    </a>
+                </span>   
+                <div *ngIf="editing" class="divEditing">
+                    <form [formGroup]="formEdit" (ngSubmit)="saveFormEdit(currentIndex, currentPhoto.id)" style="width: 80%;">
+                        <table>
+                            <tr>
+                                <td>
+                                    <textarea class="formBlack" aria-label="formEdit" formControlName="descripcion" placeholder="Descripcion" type="text" autofocus></textarea>                            
+                                </td>
+                                <td style="float: right; width: 0px;">
+                                    <table>
+                                        <tr><td><a (click)="saveFormEdit(currentIndex, currentPhoto.id)" class="lightboxButton" title="Guardar">
+                                            <i class='bx bx-save'></i>
+                                        </a></td></tr>
+                                        <tr><td><a (click)="closeFormEdit()" class="lightboxButton" title="Cancelar">
+                                            <i class="bx bxs-x-square"></i>
+                                        </a></td></tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>                    
+                    </form>
+                </div>            
+            </div>
         </div>
     </div>
-</div>
 
-<div *ngIf="new" class="modalNew">
-    <div class="lightbox"></div>
+    <div *ngIf="new" class="modalNew">
+        <div class="lightbox"></div>
+    </div>
 </div>
