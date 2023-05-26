@@ -1,0 +1,129 @@
+<div class="seccionDerecha">
+
+    <div class="blog-wrapper">
+        <div class="blog-card" style="cursor: pointer;" *ngFor="let new of news; let i=index" (click)="onPreviewNew(i);">
+            <div class="card-img"><img [src]="new.pathImage">
+                <h1>{{new.title}}</h1>
+            </div>
+            <div class="card-text"><p>{{new.description}}</p></div>
+            <div class="card-details">
+                <span style="float:left;"><i class="bx bx-calendar"></i>{{new.inscription | date:'mediumDate'}}</span>
+                <a style="float:right; text-decoration: none;" *ngIf="new.url" [href]="new.url"><i class='bx bx-glasses'></i>&nbsp;&nbsp;Ver</a>
+                <a style="float:right;" *ngIf="!new.url">&nbsp;</a>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="showMask" class="lightbox">
+        <div class="lightbox-header">
+            <div class="lightbox-header-left">                
+                <span><i class="bx bx-calendar">&nbsp;</i>{{currentNew.inscription | date: 'dd/MM/yyyy'}}</span>
+            </div>
+            <div class="lightbox-header-center">  
+                <table style="margin:0 auto;">
+                    <tr>
+                        <td style="width: 50px; text-align: center;">
+                            <a *ngIf="controls" class="lightboxButton btnNavegador" (click)="moveLeft(currentIndex)" title="Anterior">
+                                <i class='bx bx-chevron-left icon-prev'></i>
+                            </a>        
+                        </td>
+                        <td style="width: 100px; text-align: center;">
+                            <span *ngIf="showCount" class="count">{{currentIndex + 1}} / {{totalImageCount}}</span>
+                        </td>
+                        <td style="width: 50px; text-align: center;">
+                            <a *ngIf="controls" class="lightboxButton btnNavegador" (click)="moveRight(currentIndex)" title="Siguiente">
+                                <i class='bx bx-chevron-right icon-next'></i>              
+                            </a>
+                        </td>
+                    </tr>
+                </table>      
+            </div>
+            <div class="lightbox-header-right">      
+                <a class="lightboxButton" style="font-size: 1.6rem;" (click)="closeNew()" title="Cerrar">
+                    <i class='bx bx-x-circle' aria-hidden="true"></i>
+                </a>                        
+            </div>
+        </div>
+        <div class="lightbox-center">            
+                <div class="lightbox-center-left">  
+                    <table>
+                        <tr *ngIf="!editing">
+                            <td>
+                                <a *ngIf="controls" class="lightboxButton" (click)="edit(currentIndex)" title="Editar">
+                                    <i class='bx bx-edit-alt' aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr *ngIf="!editing">
+                            <td>
+                                <a *ngIf="controls" class="lightboxButton" (click)="deleteNew(currentNew.id)" title="Eliminar">
+                                    <i class='bx bx-trash' aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr *ngIf="editing">
+                            <td>
+                                <a (click)="saveFormEdit(currentIndex, currentNew.id)" class="lightboxButton" title="Guardar">
+                                    <i class='bx bx-save'></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr *ngIf="editing">
+                            <td>
+                                <a (click)="closeFormEdit()" class="lightboxButton" title="Cancelar">
+                                    <i class="bx bxs-x-square"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>                
+                </div>        
+                <div class="lightbox-center-center">                
+                    <div class="blog-card" *ngIf="previewNew">
+                        <form [formGroup]="formEdit" (ngSubmit)="saveFormEdit(currentIndex, currentNew.id)">
+                        <div [ngClass]="previewNew? 'card-img-editing':'card-img'"><img [src]="currentNew.pathImage"></div>
+                        <div [ngClass]="previewNew?'card-title-editing':'card-title'">
+                            <input *ngIf="editing" class="formWhiteInput" aria-label="formEdit" fromControlName="titulo" placeholder="Título" type="text" value="{{currentNew.title}}" autofocus />
+                            <h1 *ngIf="!editing">{{currentNew.title}}</h1>
+                        </div>
+                        <div [ngClass]="previewNew?'card-text-editing':'card-text'">
+                            <p *ngIf="!editing">{{currentNew.description}}</p>
+                            <textarea *ngIf="editing" class="formWhiteArea" aria-label="formEdit" formControlName="descripcion" placeholder="Descripcion" type="text" ></textarea>
+                        </div>
+                        <div class="card-details-edit" >
+                            <p *ngIf="!editing">{{currentNew.url}}</p>
+                            <input *ngIf="editing" class="formWhiteURL" aria-label="formEdit" fromControlName="url" placeholder="URL" type="url" value="{{currentNew.url}}" />
+                        </div>
+                        <!-- <div class="read-more"></div> -->
+                        </form>        
+                    </div>
+                </div>        
+                <!-- <div class="lightbox-center-right">                    
+                </div> -->
+        </div>
+        <!-- <div class="lightbox-footer">
+            <div *ngIf="editing" class="divEditing">                
+            </div>            
+        </div> -->
+    </div> 
+
+    <!--<div class="divsection">
+        <section class="gallery-container">
+            <div class="gcontainer">
+                <div *ngFor="let new of news; let i=index" class="gallery-img" >
+                    <div class="head"><span>{{new.title}}</span></div>
+                    <div class="photo">
+                        <input type="checkbox" class="btnSelection" (click)="clickSelect(new.id)" />
+                        <img [src]="new.pathImage" (click)="onPreviewNew(i)" />
+                    </div>
+                    <div class="description"><span>{{new.description}}</span></div>
+                    <div class="inscription">{{new.inscription}}</div>
+                    <div class="url"><a [href]="new.url">Ver más...</a></div>
+                </div>
+            </div>
+        </section>
+         
+    </div>-->
+
+    <!-- <div *ngIf="new" class="modalNew">
+        <div class="lightbox"></div>
+    </div> -->
+</div>

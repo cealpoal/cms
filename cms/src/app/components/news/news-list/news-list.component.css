@@ -1,0 +1,242 @@
+.blog-wrapper{
+	padding:15px;
+	display:flex;
+	flex-direction:row;
+	justify-content:center;
+	flex-wrap:wrap;
+
+}
+.blog-card{
+    min-width:500px;
+    margin:15px;
+    background:#fff;
+    border:1px solid rgba(0, 0, 0, 0.5);
+    text-align:center;
+    border-radius: 10px;
+    /* cursor:pointer; */
+}
+.blog-card:hover{
+    box-shadow: 0 3px 10px 0 rgba(0,0,0,.1);
+}
+.card-img img{
+    opacity:0.8;
+}
+.card-img{
+    position:relative;
+    text-align:center;
+    background:rgba(0, 0, 0, 0.5);
+    border-radius: 10px 10px 0px 0px;
+}
+.card-img img,.card-img-editing img{
+    transition: .3s;
+    width:100%;
+    border-bottom:4px solid rgba(0, 0, 0, 0.5);
+    border-radius: 10px 10px 0px 0px;
+}
+.card-img img{
+    max-height:180px;
+}
+.card-img-editing img{
+    max-height:300px;
+}
+.card-img img:before{
+    content:'';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    margin-left: -10px;
+    width: 0;
+    height: 0;
+    border-top: solid 10px rgba(0, 0, 0, 0.5);
+    border-left: solid 10px transparent;
+    border-right: solid 10px transparent;
+}
+h1{
+    text-align: left;
+    padding: 5px;
+    font-size:larger;
+    width:100%;
+    color:#fff;
+}
+.card-details,.read-more{
+    color:#3C3C3C;
+    text-align: left;
+    font-size: 12px;
+    width: 150px;
+    padding-bottom: 15px;
+}
+.card-details span{		
+    padding:0 10px;
+}
+.card-details span i{
+    margin-right:5px;
+}
+.card-text,.card-text-editing{
+    line-height:22px;
+    text-align: justify;
+    color:black;
+}
+.card-text{
+    padding:30px 15px;
+}
+.card-text-editing{
+    padding:25px 15px;
+}
+.card-text-edit{
+    padding:30px 15px  15px
+}
+.card-details{
+    width: 98%;
+    margin-bottom: 15px;
+}
+.card-details-edit{
+    text-align: left;
+    padding: 8px 15px 12px 15px;
+    font-size: smaller;
+    color: navy;
+}
+.read-more{
+    float: right;
+    text-align: right;
+    padding-right: 15px;    
+}
+.read-more > a{
+    text-decoration: none;
+}
+.read-more:hover{
+    background: darken(rgba(0, 0, 0, 0.5),20%);
+}
+.card-details > span > i,.read-more > a > i{
+    font-size: 13px;
+}
+.lightbox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0px;
+    width: calc(100% - 85px);
+    height: 100%;
+    background-color: rgba(0,0,0,.85);
+    overflow: hidden;
+    color: whitesmoke;
+}
+.lightbox-header{
+    color: whitesmoke;
+    position: fixed;
+    top: 0;
+    width: 80%;
+    padding-top: 10px;
+}
+.lightbox-header-left{
+    width: 33%;
+    text-align: left;
+    float: left;
+    display: inline-block
+}
+.lightbox-header-center{
+    width: 33%;
+    text-align: center;
+    display: inline-block
+}
+.lightbox-header-right{
+    width: 33%;
+    text-align: right;
+    float: right;
+    display: inline-block
+}
+.lightbox-center{
+    color: whitesmoke;
+    position: fixed;
+    display: flex;
+    width: 80%;
+}
+.lightbox-center-left{
+    padding-top: 15px;
+    text-align: left;
+    float: left;
+    display: inline-block
+}
+.lightbox-center-center{
+    width: 100%;
+    text-align: center;
+    display: inline-block
+}
+.lightbox-center-right{
+    width: 100px;
+    text-align: right;
+    float: right;
+    display: inline-block
+}
+.lightbox-footer{
+    color: whitesmoke;
+    position: fixed;
+    bottom: 0;
+    width: 80%;
+    padding-bottom: 15px;
+}
+.lightboxButton{
+    cursor: pointer;
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: larger;
+    opacity: 0.5;
+}
+.lightboxButton:hover{
+    opacity: 1;
+}
+.btnEdit > a{
+    opacity: 0;
+    font-size: auto;
+    cursor: pointer;    
+}
+.btnEdit:hover > a{
+    opacity: 0.15;
+}
+.btnEdit > a:hover{
+    opacity: 0.85;
+}
+.formWhiteInput{
+    margin: 0 auto;
+    width: 99%;
+    height: 100%;
+    border: none;
+    border-radius: 5px;
+    color: whitesmoke;
+    font-size: large;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 5px;
+}
+.formWhiteArea{
+    margin: 0 auto;
+    width: 100%;
+    max-height: 150px;
+    min-height: 100px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.card-title,.card-title-editing{
+    position:relative;
+    text-align:center;
+    background:rgba(0, 0, 0, 0.5);
+    max-height: 50px;
+    min-height: 34px;    
+}
+.card-title{
+    padding-top: 10px;
+    padding-bottom: 1px;
+}
+.card-title-editing{
+    padding: 10px 10px;
+}
+.formWhiteURL{
+    color:navy;
+    margin: 0 auto;
+    width: 99%;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.05);
+}

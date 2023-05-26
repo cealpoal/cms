@@ -10,3 +10,12 @@ export interface galleryResponse{
     description:string;
     inscription:Date;
 }
+
+export interface newResponse{
+    id:string;
+    pathImage:string;
+    title:string;
+    description:string;
+    inscription:Date;
+    url:string;
+}
